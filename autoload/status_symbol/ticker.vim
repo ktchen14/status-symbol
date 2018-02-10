@@ -1,5 +1,5 @@
 let s:scroll_mark = get(g:, 'status_symbol_scroll_mark', ['◀', '▶'])
-if type(s:scroll_mark) != v:t_list
+if type(s:scroll_mark) != type(v[])
   let s:scroll_mark = [s:scroll_mark, s:scroll_mark]
 endif
 
@@ -17,7 +17,7 @@ endfunction
 
 function! status_symbol#ticker#scroll(atom_list, on, length, margin, layout)
   " If only one margin was given then use it for both sides
-  let margin = type(a:margin) == v:t_list ? a:margin : [a:margin, a:margin]
+  let margin = type(a:margin) == type([]) ? a:margin : [a:margin, a:margin]
 
   " We'll let 0 represent the left side and 1 represent the right side. This
   " allows us to convert from one side to the other using !. According to the
@@ -176,12 +176,12 @@ function! status_symbol#ticker#render(domain, length, border, layout)
 
   let atom_list = []
   for molecule in molecule_list
-    if type(molecule) == v:t_dict
+    if type(molecule) == type({})
       if has_key(molecule, 'atom_list')
         for atom in molecule.atom_list
           let mole = copy(molecule)
           unlet mole.atom_list
-          if type(atom) == v:t_dict
+          if type(atom) == type({})
             call add(atom_list, extend(mole, atom))
           else
             call add(atom_list, extend(mole, { 'text': atom }))

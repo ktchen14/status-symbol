@@ -1,5 +1,5 @@
 let s:border = get(g:, 'status_symbol_tabbed_border', [' ', ' ', ' '])
-if type(s:border) != v:t_list
+if type(s:border) != type([])
   let s:border = ['', '', s:border]
 elseif len(s:border) == 2
   call add(s:border, '')

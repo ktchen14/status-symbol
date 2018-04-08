@@ -1,5 +1,5 @@
 let s:scroll_mark = get(g:, 'status_symbol_scroll_mark', ['◀', '▶'])
-if type(s:scroll_mark) != type(v[])
+if type(s:scroll_mark) != type([])
   let s:scroll_mark = [s:scroll_mark, s:scroll_mark]
 endif
 
